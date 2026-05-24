@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DYODA | Gaming Hub & Comunitate</title>
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --container-bg: #111625;
+            --neon-green: #00ff66;
+            --twitch-purple: #9146ff;
+            --text-color: #e0e6ed;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header / Profil - Folosește poza cu setup-ul tău pe fundal */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.95)), url('https://raw.githubusercontent.com/dyoda2023/dyoda2015.github.io/main/1000034088.jpg') no-repeat center center/cover;
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--neon-green);
+        }
+
+        /* Avatar cu poza ta reală */
+        .profile-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 4px solid var(--neon-green);
+            margin-bottom: 15px;
+            box-shadow: 0 0 20px var(--neon-green);
+            object-fit: cover;
+        }
+
+        header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 0px 0px 10px var(--neon-green);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Cod Creator */
+        .creator-code-box {
+            background: linear-gradient(45deg, #161b22, #0d1117);
+            border: 2px dashed var(--neon-green);
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0, 255, 102, 0.15);
+        }
+
+        .creator-code-box h2 {
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+
+        .code-display {
+            display: inline-block;
+            background-color: #000;
+            color: var(--neon-green);
+            font-size: 2.5rem;
+            font-weight: bold;
+            padding: 10px 40px;
+            border-radius: 8px;
+            margin: 15px 0;
+            letter-spacing: 4px;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
+
+        /* Sectiuni */
+        .section-title {
+            color: var(--white);
+            border-left: 5px solid var(--neon-green);
+            padding-left: 15px;
+            margin-top: 40px;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Jocuri Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background-color: var(--container-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+            border: 1px solid #222e45;
+        }
+
+        .game-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 255, 102, 0.1);
+            border-color: var(--neon-green);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .game-card-content {
+            padding: 20px;
+        }
+
+        .game-card-content h3 {
+            color: var(--white);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        /* Secțiune Clipuri Video */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .video-card {
+            background-color: var(--container-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222e45;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-info {
+            padding: 15px;
+        }
+
+        .video-info h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+        }
+
+        /* Social Media Hub */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            border-radius: 10px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .social-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .discord { background-color: #5865F2; box-shadow: 0 0 15px rgba(88, 101, 242, 0.4); }
+        .tiktok { background-color: #010101; border: 1px solid #333; box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
+        .youtube { background-color: #FF0000; box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+        .twitch { background-color: #9146ff; box-shadow: 0 0 15px rgba(145, 70, 255, 0.4); }
+
+        /* Comentarii */
+        .comments-section {
+            background-color: var(--container-bg);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border: 1px solid #222e45;
+        }
+
+        .comment-form input, .comment-form textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: #0b0c10;
+            border: 1px solid #222e45;
+            color: var(--white);
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .comment-form textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .comment-form button {
+            background-color: var(--neon-green);
+            color: #000;
+            border: none;
+            padding: 15px 35px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
+        }
+
+        .comment-form button:hover {
+            background-color: #00cc52;
+            transform: translateY(-2px);
+        }
+
+        .comments-list {
+            margin-top: 30px;
+            border-top: 1px solid #222e45;
+            padding-top: 20px;
+        }
+
+        .comment-item {
+            background-color: #0b0c10;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--neon-green);
+        }
+
+        .comment-author {
+            color: var(--white);
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            border-top: 1px solid #222e45;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://raw.githubusercontent.com/dyoda2023/dyoda2015.github.io/main/1000040106.jpg" alt="DYODA" class="profile-avatar">
+        <h1>DYODA</h1>
+        <p>Mă numesc Marius, dar prietenii îmi spun Dyoda. Am 42 de ani, sunt din Alba Iulia și sunt pasionat de gaming și streaming!</p>
+    </header>
+
+    <div class="container">
+
+        <div class="creator-code-box">
+            <h2>Susține-mă în Fortnite!</h2>
+            <p>Introdu codul meu în Item Shop când cumperi mape sau skin-uri:</p>
+            <div class="code-display">DYODA</div>
+            <p style="color: var(--neon-green); font-size: 1rem; font-weight: bold;">Creator de Mape Fortnite oficial</p>
+        </div>
+
+        <h2 class="section-title">Ce ne jucăm pe Stream?</h2>
+        <div class="games-grid">
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1547483238-f400e65ccd56?w=500&auto=format&fit=crop" alt="Dune Awakening">
+                <div class="game-card-content">
+                    <h3>Dune: Awakening</h3>
+                    <p>Supraviețuire intensă, MMO și bătălii epice în deșertul de pe Arrakis.</p>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1560942485-b2a11cc13456?w=500&auto=format&fit=crop" alt="Ark Ascended">
+                <div class="game-card-content">
+                    <h3>ARK: Survival Ascended</h3>
+                    <p>Lumea dinozaurilor la rezoluție maximă. Îmblânzim monștri și dominăm harta.</p>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop" alt="World of Warcraft">
+                <div class="game-card-content">
+                    <h3>World of Warcraft</h3>
+                    <p>Raiduri periculoase, chei mitice și lupte epice în cel mai mare MMORPG.</p>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <img src="https://images.unsplash.com/photo-1611195974226-a6a9be9dd763?w=500&auto=format&fit=crop" alt="TFT & Hearthstone">
+                <div class="game-card-content">
+                    <h3>TFT & Hearthstone</h3>
+                    <p>Meciuri tactice de minte, strategii perfecte și multă adrenalină.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">🎬 Cele mai tari faze</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3>Urmărește clipurile mele live pe TikTok și YouTube!</h3>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="section-title">Alătură-te Comunității</h2>
+        <div class="social-grid">
+            <a href="https://discord.gg/D2w2UbfQNW" target="_blank" class="social-btn discord">Discord Server</a>
+            <a href="https://www.tiktok.com/@dyoda2023" target="_blank" class="social-btn tiktok">TikTok Profil</a>
+            <a href="https://www.youtube.com/@Dyoda2015" target="_blank" class="social-btn youtube">YouTube Canal</a>
+            <a href="https://www.twitch.co/dyoda2015" target="_blank" class="social-btn twitch">Twitch Stream Live</a>
+        </div>
+
+        <h2 class="section-title">💬 Lasă un mesaj în Comunitate</h2>
+        <div class="comments-section">
+            <div class="comment-form">
+                <input type="text" id="username" placeholder="Numele tău / Nickname" required>
+                <textarea id="commentText" placeholder="Scrie un mesaj pentru stream..." required></textarea>
+                <button type="button" onclick="addComment()">Trimite Mesajul</button>
+            </div>
+
+            <div class="comments-list" id="commentsList">
+                <div class="comment-item">
+                    <div class="comment-author">GamerPro_Alba</div>
+                    <div class="comment-text">Setup-ul tău arată genial pe fundal! Mapele de Fortnite sunt top! 🔥</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 DYODA Gaming. Găzduit prin GitHub Pages.
+    </footer>
+
+    <script>
+        function addComment() {
+            const nameInput = document.getElementById('username');
+            const textInput = document.getElementById('commentText');
+            const commentsList = document.getElementById('commentsList');
+
+            if(nameInput.value.trim() === '' || textInput.value.trim() === '') {
+                alert('Te rog completează ambele câmpuri!');
+                return;
+            }
+
+            const newComment = document.createElement('div');
+            newComment.className = 'comment-item';
+            
+            const authorDiv = document.createElement('div');
+            authorDiv.className = 'comment-author';
+            authorDiv.innerText = nameInput.value;
+
+            const textDiv = document.createElement('div');
+            textDiv.className = 'comment-text';
+            textDiv.innerText = textInput.value;
+
+            newComment.appendChild(authorDiv);
+            newComment.appendChild(textDiv);
+
+            commentsList.insertBefore(newComment, commentsList.firstChild);
+
+            nameInput.value = '';
+            textInput.value = '';
+        }
+    </script>
+</body>
+</html>
